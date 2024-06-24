@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: member-service
+  labels:
+    app: member-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: member-service
+  template:
+    metadata:
+      name: member-service
+      labels:
+        app: member-service
+    spec:
+      containers:
+        - name: member-service
+          image: rahilk82/member-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8997
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: app-config
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: member-service
+  labels:
+    app: member-service
+spec:
+  type: NodePort
+  selector:
+    app: member-service
+  ports:
+    - protocol: TCP
+      port: 8997
+      targetPort: 8997
+      nodePort: 30081 # You can specify the node port here, it must be in the range 30000-32767
+      

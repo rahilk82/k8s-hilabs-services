@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: translation-service
+  labels:
+    app: translation-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: translation-service
+  template:
+    metadata:
+      name: translation-service
+      labels:
+        app: translation-service
+    spec:
+      containers:
+        - name: translation-service
+          image: rahilk82/translatio-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8998
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: app-config
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: translation-service
+  labels:
+    app: translation-service
+spec:
+  type: NodePort
+  selector:
+    app: translation-service
+  ports:
+    - protocol: TCP
+      port: 8998
+      targetPort: 8998
+      nodePort: 30082 # You can specify the node port here, it must be in the range 30000-32767
