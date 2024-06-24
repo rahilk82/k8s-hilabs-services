@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ingestion-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: ingestion-service
@@ -20,7 +20,7 @@ spec:
           image: rahilk82/ingestion-server:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8996
+            - containerPort: 8998
               protocol: TCP
           envFrom:
             - configMapRef:
@@ -40,6 +40,6 @@ spec:
     app: ingestion-service
   ports:
     - protocol: TCP
-      port: 8996
-      targetPort: 8996
-      nodePort: 30080 # You can specify the node port here, it must be in the range 30000-32767
+      port: 8998
+      targetPort: 8998
+      nodePort: 30080

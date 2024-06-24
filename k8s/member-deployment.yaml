@@ -5,7 +5,7 @@ metadata:
   labels:
     app: member-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: member-service
@@ -20,7 +20,7 @@ spec:
           image: rahilk82/member-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8997
+            - containerPort: 8998
               protocol: TCP
           envFrom:
             - configMapRef:
@@ -40,7 +40,7 @@ spec:
     app: member-service
   ports:
     - protocol: TCP
-      port: 8997
-      targetPort: 8997
+      port: 8999
+      targetPort: 8998
       nodePort: 30081 # You can specify the node port here, it must be in the range 30000-32767
       

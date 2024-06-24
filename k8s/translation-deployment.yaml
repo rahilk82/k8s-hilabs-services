@@ -5,7 +5,7 @@ metadata:
   labels:
     app: translation-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: translation-service
@@ -39,6 +39,6 @@ spec:
     app: translation-service
   ports:
     - protocol: TCP
-      port: 8998
+      port: 9000
       targetPort: 8998
-      nodePort: 30082 # You can specify the node port here, it must be in the range 30000-32767
+      nodePort: 30082
