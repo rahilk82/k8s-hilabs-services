@@ -1,0 +1,16 @@
+---
+#repositories:
+#  - name: helloworld
+#    url: git+https://github.com/rahulwagh/helmchart@helloworld?ref=master&spars
+releases:
+
+  - name: translation-service
+    chart: ./translation-service
+    installed: true
+  - name: member-service
+    chart: ./member-service
+    installed: true
+  - name: ingestion-service
+    chart: ./ingestion-service
+    installed: true
+
