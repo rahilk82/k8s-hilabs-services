@@ -1,7 +1,7 @@
 ---
-#repositories:
-#  - name: helloworld
-#    url: git+https://github.com/rahulwagh/helmchart@helloworld?ref=master&spars
+repositories:
+  - name: synthesis
+    url: https://github.com/rahilk82/k8s-hilabs-services.git
 releases:
 
   - name: translation-service
