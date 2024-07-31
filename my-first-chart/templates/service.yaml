@@ -12,6 +12,7 @@ spec:
       targetPort: {{ .Values.services.targetPort }}
       protocol: {{ .Values.services.proto | quote }}
       name: {{ .Values.services.name | quote }}
+      nodeport: {{ .Values.services.nodePort }}
   selector:
     app: {{ .Values.name | quote }}
 

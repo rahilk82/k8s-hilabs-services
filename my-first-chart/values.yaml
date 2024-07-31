@@ -1,12 +1,12 @@
 name: "rahil-portfolio"
 namespace: "synthesis"
 
-imageVersion: "nginx"
+imageVersion: "744958734165.dkr.ecr.us-east-1.amazonaws.com/translation-service"
 
 replicaCount: 1
 
 image:
-  tag: "latest"
+  tag: "1"
 
 restartPolicy: "Always"
 containerPort: 80
@@ -19,12 +19,13 @@ resources:
     cpu: "300m"
     memory: "200Mi"
 
-configMapName: "portfolio-cm"
-secretName: "synthesis"
+configMapName: "synthesis-config"
+# secretName: "synthesis"
 
 services:
   name: "portfolio-service"
   type: "NodePort"
   port: 8998
-  targetPort: 80
+  targetPort: 8998
+  nodePort: 8998
   proto: "TCP"
