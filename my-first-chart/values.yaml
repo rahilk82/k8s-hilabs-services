@@ -9,7 +9,7 @@ image:
   tag: "1"
 
 restartPolicy: "Always"
-containerPort: 80
+containerPort: 8998
 
 resources:
   requests:
@@ -27,5 +27,5 @@ services:
   type: "NodePort"
   port: 8998
   targetPort: 8998
-  nodePort: 8998
+  nodePort: 30097
   proto: "TCP"
