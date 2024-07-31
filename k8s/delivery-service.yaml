@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ingestion-service
+  name: delivery-service
   labels:
-    app: ingestion-service
+    app: delivery-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ingestion-service
+      app: delivery-service
   template:
     metadata:
-      name: ingestion-service
+      name: delivery-service
       labels:
-        app: ingestion-service
+        app: delivery-service
     spec:
       containers:
-        - name: ingestion-service
-          image: 744958734165.dkr.ecr.us-east-1.amazonaws.com/ingestion-service:1
+        - name: delivery-service
+          image: 744958734165.dkr.ecr.us-east-1.amazonaws.com/delivery-service:1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8998
@@ -31,15 +31,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingestion-service
+  name: delivery-service
   labels:
-    app: ingestion-service
+    app: delivery-service
 spec:
   type: NodePort
   selector:
-    app: ingestion-service
+    app: delivery-service
   ports:
     - protocol: TCP
-      port: 9000
+      port: 8998
       targetPort: 8998
       nodePort: 30083

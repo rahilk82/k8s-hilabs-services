@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
         - name: member-service
-          image: rahilk82/member-service:latest
+          image: 744958734165.dkr.ecr.us-east-1.amazonaws.com/member-service:1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8998
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: app-config
+                name: synthesis-cm
       restartPolicy: Always
 
 ---
@@ -40,7 +40,7 @@ spec:
     app: member-service
   ports:
     - protocol: TCP
-      port: 8999
+      port: 9001
       targetPort: 8998
-      nodePort: 30081 # You can specify the node port here, it must be in the range 30000-32767
+      nodePort: 30084 # You can specify the node port here, it must be in the range 30000-32767
       

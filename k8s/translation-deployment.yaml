@@ -17,15 +17,16 @@ spec:
     spec:
       containers:
         - name: translation-service
-          image: rahilk82/translatio-service:latest
+          image: 744958734165.dkr.ecr.us-east-1.amazonaws.com/translation-service:1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8998
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: app-config
+                name: synthesis-cm
       restartPolicy: Always
+      
 ---
 apiVersion: v1
 kind: Service
@@ -39,6 +40,6 @@ spec:
     app: translation-service
   ports:
     - protocol: TCP
-      port: 9000
+      port: 9004
       targetPort: 8998
-      nodePort: 30082
+      nodePort: 30085

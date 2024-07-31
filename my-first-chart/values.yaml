@@ -1,0 +1,30 @@
+name: "rahil-portfolio"
+namespace: "synthesis"
+
+imageVersion: "nginx"
+
+replicaCount: 1
+
+image:
+  tag: "latest"
+
+restartPolicy: "Always"
+containerPort: 80
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "100Mi"
+  limits:
+    cpu: "300m"
+    memory: "200Mi"
+
+configMapName: "portfolio-cm"
+secretName: "synthesis"
+
+services:
+  name: "portfolio-service"
+  type: "NodePort"
+  port: 8998
+  targetPort: 80
+  proto: "TCP"

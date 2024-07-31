@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ingestion-service
+  name: dq-service
   labels:
-    app: ingestion-service
+    app: dq-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ingestion-service
+      app: dq-service
   template:
     metadata:
-      name: ingestion-service
+      name: dq-service
       labels:
-        app: ingestion-service
+        app: dq-service
     spec:
       containers:
-        - name: ingestion-service
-          image: 744958734165.dkr.ecr.us-east-1.amazonaws.com/ingestion-service:1
+        - name: dq-service
+          image: 744958734165.dkr.ecr.us-east-1.amazonaws.com/dq-service:1
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8998
+            - containerPort: 8080
               protocol: TCP
           envFrom:
             - configMapRef:
@@ -31,15 +31,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingestion-service
+  name: dq-service
   labels:
-    app: ingestion-service
+    app: dq-service
 spec:
   type: NodePort
   selector:
-    app: ingestion-service
+    app: dq-service
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 8998
+      port: 8999
+      targetPort: 8080
       nodePort: 30083

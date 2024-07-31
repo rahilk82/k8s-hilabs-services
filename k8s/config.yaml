@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-config
+  name: synthesis-cm
 data:
     APP_CONFIG_PYTHON: "C:/Users/HL0156/code/cdi-python-ds/"
     APP_CONFIG_RESOURCES: "C:/Users/aaqib.hoda/IdeaProjects/cdi-java-api/src/main/resources/static/"
